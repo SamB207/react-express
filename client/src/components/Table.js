@@ -40,7 +40,7 @@ const Table = (props) => {
       <div>
         <table>
       <TableHeader /> 
-      <TableBody linkData = {props.linkData} removeLink={props.removeLink}/>
+      <TableBody linkData = {props.linkData ? props.linkData : []} removeLink={props.removeLink}/>
       </table>
     </div>
   )

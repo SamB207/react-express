@@ -11,6 +11,7 @@ const LinkContainer = (props) => {
       let response =await fetch('/Links')
       console.log(response)
       let data = await response.json()
+      setLink(data)
       console.log(data)
     }
     catch (error){
@@ -29,17 +30,17 @@ const LinkContainer = (props) => {
       })
       console.log(response)
       let message = await response.text()
-      setLink(data)
       console.log(message)
     }
     catch(error){
       console.log(error)
     }
   }
-  // useEffect(() =>{
-  //  fetchlinks()
-  //   postlinks()
-  // }, [])
+  useEffect(() =>{
+   if(link.length < 1){
+    fetchlinks()
+   } 
+  }, [])
 
   
   const [link, setLink] = useState([]);
