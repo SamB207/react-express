@@ -18,6 +18,28 @@ const LinkContainer = (props) => {
       console.log(error)
     }
   }
+  const updatelinks = async (UpdateLink) => {
+    try{
+      let response =await fetch('/update/:id')
+      console.log(response)
+      let data = await response.json()
+      console.log(data)
+    }
+    catch (error){
+      console.log(error)
+    }
+  }
+  const deleLinks = async (delink) => {
+    try{
+      let response =await fetch('/delete/:id')
+      console.log(response)
+      let data = await response.json()
+      console.log(data)
+    }
+    catch (error){
+      console.log(error)
+    }
+  }
   const postlinks = async (newLink) => {
     
     try{
@@ -52,7 +74,7 @@ const LinkContainer = (props) => {
       const deleteLink = [...link];
       deleteLink.splice(index, 1);
       setLink(deleteLink);
-      
+      deleLinks(index)
   }
 
   const handleSubmit = (favLink) => {
@@ -62,6 +84,7 @@ const LinkContainer = (props) => {
        setLink([...link, favLink])
        postlinks(favLink)
        fetchlinks()
+       updatelinks(favLink)
   }
 
   return (

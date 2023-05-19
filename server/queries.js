@@ -36,9 +36,32 @@ const createLink = (req, res) =>{
     
 }
 //update link in the db
+const updateLink =(req, res) =>{
+    const id = parseInt(req.params.id)
+    const name = req.body.name
+    const URL = req.body.URL
+
+    pool.query('UPDATE INTO links (name, URL) VALUE ($1, $2)', [name, URL, id], (error, result)=>{
+        if (error){
+            throw error
+        }
+        response.status(200).send(`Update to links`)
+    })
+}
 
 //delete link in the db
+const delLink = (req, res)=>{
+    const id = parseInt(req.params.id)
+    const name = req.body.name
+    const URL = req.body.URL
 
+    pool.query('DELETE FROM links (name, URL) VALUE ($1, $2)', [name, URL, id], (error, result)=>{
+        if (error){
+            throw error
+        }
+        response.status(200).send(`Delete from links`)
+    })
+}
 module.exports ={
-    getLinks, createLink
+    getLinks, createLink, delLink, updateLink
 }

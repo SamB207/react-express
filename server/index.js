@@ -23,7 +23,8 @@ app.post('/test', (req, res)=>{
 })
 app.get('/links', db.getLinks)
 app.post('/new', db.createLink)
-
+app.put('/update/:id', db.updateLink)
+app.delete('/delete/:id', db.delLink)
 app.listen(PORT, ()=>{
     console.log(`App is running on port ${PORT}`)
 })
