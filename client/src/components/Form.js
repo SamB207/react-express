@@ -23,6 +23,7 @@ const Form = (props) => {
             TODO - Logic for calling props to handle submission and setting state changes
         */
        props.onSubmit({"name": name, "URL": favLink})
+       props.notifyParent({name, URL})
         
            
   }

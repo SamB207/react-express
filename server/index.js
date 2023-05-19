@@ -18,6 +18,9 @@ app.get('/', (req, res)=>{
 //     //do somethng when the client requests this route - /api, send message back to client
 //     res.json({message: "Yo yo!"})
 // })
+app.post('/test', (req, res)=>{
+    res.send(req.body)
+})
 app.get('/links', db.getLinks)
 app.post('/new', db.createLink)
 

@@ -20,14 +20,20 @@ const getLinks = (req, res)=>{
 const createLink = (req, res) =>{
     const name = req.body.name
     const URL = req.body.URL
-
-    pool.query('INSERT INTO links (name, URL) VALUES ($1, $2)', [name, URL], (error, results)=>{
+    if(name && URL !== null){
+       pool.query('INSERT INTO links (name, URL) VALUES ($1, $2)', [name, URL], (error, results)=>{
         if(error){
             throw error;
         }
         res.status(201).send(`Link added`)
     },
     )
+    } else{
+        response.status(402).send("Server is expecting data")
+    }
+
+
+    
 }
 //update link in the db
 

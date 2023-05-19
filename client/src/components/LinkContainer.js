@@ -5,18 +5,18 @@ import Table from './Table';
 import Form from './Form';
 
 const LinkContainer = (props) => {
-  // const fetchlinks = async ()=>{
-  //   //fech data from db fro table
-  //   try{
-  //     let response =await fetch('/Links')
-  //     console.log(response)
-  //     let data = await response.json()
-  //     console.log(data)
-  //   }
-  //   catch (error){
-  //     console.log(error)
-  //   }
-  // }
+  const fetchlinks = async ()=>{
+    //fech data from db fro table
+    try{
+      let response =await fetch('/Links')
+      console.log(response)
+      let data = await response.json()
+      console.log(data)
+    }
+    catch (error){
+      console.log(error)
+    }
+  }
   const postlinks = async (newLink) => {
     
     try{
@@ -28,17 +28,18 @@ const LinkContainer = (props) => {
         body: JSON.stringify(newLink)
       })
       console.log(response)
-      let message = response.text()
+      let message = await response.text()
+      setLink(data)
       console.log(message)
     }
     catch(error){
       console.log(error)
     }
   }
-  useEffect(() =>{
-   // fetchlinks()
-    postlinks()
-  }, [])
+  // useEffect(() =>{
+  //  fetchlinks()
+  //   postlinks()
+  // }, [])
 
   
   const [link, setLink] = useState([]);
@@ -59,6 +60,7 @@ const LinkContainer = (props) => {
         */
        setLink([...link, favLink])
        postlinks(favLink)
+       fetchlinks()
   }
 
   return (
